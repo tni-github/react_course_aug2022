@@ -1,0 +1,12 @@
+.Message {
+    margin: 0 auto;
+}
+
+.Message__text {
+    margin: 0 auto;
+    padding: 5px;
+    border-bottom: 1.5px solid rgb(16, 75, 43);
+    font-size: 35px;
+    font-style: italic;
+    color: rgb(82, 22, 22);
+}
