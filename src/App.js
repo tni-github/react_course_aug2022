@@ -26,9 +26,9 @@ export default App;
  */
 
 import './App.css';
+import Message from './components/Message';
 
-
-
+const textMessage = 'First task';
 
 function App(props) {
   return (
@@ -36,7 +36,7 @@ function App(props) {
       <header className="App__header">
         My First React App
         <h3 className="App__header_subtext">Hello, {props.name}!</h3>
-
+        <Message messageText={textMessage} />
       </header>
     </div>
   );
