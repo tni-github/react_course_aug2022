@@ -1,4 +1,4 @@
-import './Message.css';
+import './style.css';
 
 function Message(props) {
     return (
