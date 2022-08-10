@@ -11,3 +11,14 @@
     font-style: italic;
     color: rgb(82, 22, 22);
 }
+
+.message__fulltext {
+    margin: 10px 0;
+    background-color: aliceblue;
+    min-height: 100px;
+    min-width: 150px;
+    max-width: 100%;
+    border: 1px solid rgb(59, 33, 155);
+    box-sizing: border-box;
+    color: black;
+}
