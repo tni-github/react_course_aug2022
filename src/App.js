@@ -1,47 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import './components/style.css'
-import Message from './components/Message';
-import UserMessage from './components/UserMessage';
-import Bot from './components/Bot';
-import History from './components/History';
+import './components/style.css';
+import Message from './components/Message'
+import MsgCreator from './components/MsgCreator';
 import Form from './components/Form';
 
 const textMessage = 'First task';
+let timer = null;
+
+const botMessage = { author: "bot", text: "Please wait, operator will come soon..." };
 
 function App(props) {
-  let [messageList, setMessageList] = useState([]);
-  const [message, setMessage] = useState({});
+  const [messageList, setMessageList] = useState([]);
+  let [message, setMessage] = useState({ author: "", text: "" });
 
-  const handleChange = (event) => {
+  const createMessage = (event) => {
     setMessage({ author: "user", text: event.target.value });
-  };
+  }
 
-  const addMessage = () => {
-    setMessageList(messageList.concat({ message }));
-    setMessage({ author: "", text: "" });
-    //alert("Нельзя отправлять пустое сообщение! Введите текст и повторите отправку!")
-  };
+  const updateMessageList = () => {
+    if (message.text === "" || message.text === " " || message.text === "  ") {
+      alert('Нельзя отправить пустое сообщение! Добавьте текст!');
+    } else {
+      setMessageList(messageList.concat(message));
+      setMessage({ author: "", text: "" });
+    }
+  }
 
-  const botObject = {
-    name: "Bot",
-    text: "Please wait, operator will come soon..."
-  };
+  useEffect(() => {
+    timer = setTimeout(
+      () => {
+        if (messageList.length !== 0 && messageList[messageList.length - 1].author === "user") { setMessageList(messageList.concat(botMessage)) }
+        else { clearTimeout(timer) }
+      }, 1500);
+  }, [messageList]);
 
-  useEffect(
-    () => {
-      messageList.map((message) => {
-        return (
-          <>
-            <UserMessage author={message.author} text={message.text} />
-            <Bot name={botObject.name} text={botObject.text} />
-          </>
-        );
-      });
-    }, [messageList, botObject.name, botObject.text])
-
-  console.log('message: ', message);
-  console.log('messageList', messageList);
+  console.log('список сообщений: ', messageList);
+  console.log('сообщение: ', message);
 
   return (
     <div className="App">
@@ -49,29 +44,17 @@ function App(props) {
         My First React App
         <h3 className="App__header_subtext">Hello, {props.name}!</h3>
         <Message messageText={textMessage} />
-
-        <Form onChange={handleChange} text={message.text} onClick={addMessage} />
-
-        {/* <form className="form">
-          <label>Текст сообщения: </label>
-          <input
-            className="form__message"
-            type="text"
-            placeholder="Введите сообщение"
-            onChange={handleChange}
-          />
-          <div>Ниже будет полный текст cообщения:</div>
-          <div className="message__fulltext">{message.text}</div>
-          <button type="submit" onClick={addMessage}>Отправить сообщение</button>
-        </form> */}
-
-        <History>
-          <UserMessage />
-          <Bot />
-        </History>
       </header>
-    </div>
-  )
+
+      <Form
+        onClick={updateMessageList}
+        onChange={createMessage}
+      >
+      </Form>
+
+      <MsgCreator messageList={messageList} />
+    </div >
+  );
 }
 
-export default App;
+export default App; 

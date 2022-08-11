@@ -12,13 +12,56 @@
     color: rgb(82, 22, 22);
 }
 
-.message__fulltext {
-    margin: 10px 0;
-    background-color: aliceblue;
-    min-height: 100px;
-    min-width: 150px;
-    max-width: 100%;
-    border: 1px solid rgb(59, 33, 155);
+.message__user {
+    margin: 10px auto;
+    max-width: 55vw;
+    text-align: left;
+}
+
+.message__user span:first-child {
+    color: red;
+}
+
+.message__bot {
+    margin: 10px auto;
+    max-width: 55vw;
+    text-align: left;
+}
+
+.message__bot span:first-child {
+    color: blue;
+}
+
+.form__input {
+    margin: 30px;
+    width: 200px;
+    height: 30px;
+    color: #0c1e41;
+    padding: 5px;
+    outline: none;
     box-sizing: border-box;
-    color: black;
+}
+
+.form__input:focus {
+    border: 1px solid #0c1e41;
+}
+
+.form__btn {
+    padding: 3px;
+    background-color: #88a0d1;
+    color: #0c1e41;
+    border: 2px solid transparent;
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.form__btn:hover {
+    border: 2px solid #0c1e41;
+}
+
+.form__btn:active {
+    color: #88a0d1;
+    background-color: #020814;
 }

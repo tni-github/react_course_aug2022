@@ -1,24 +1,19 @@
-
-import './style.css';
-
 function Form(props) {
-
     return (
-        <form className="form">
-            <label>Текст сообщения: </label>
-            <input
-                className="form__message"
-                type="text"
-                placeholder="Введите сообщение"
+        <>
+            <input className="form__input"
+                placeholder="Напишите текст сообщения"
                 onChange={props.onChange}
             />
-            <div>Ниже будет полный текст cообщения:</div>
-            <div className="message__fulltext">{props.text}</div>
-            <button type="submit" onClick={props.onClick}>Отправить сообщение</button>
-        </form>
-
-    )
-
+            <button className="form__btn"
+                type="submit"
+                action="#"
+                onClick={props.onClick}
+            >
+                Отправить сообщение
+            </button>
+        </>
+    );
 }
 
 export default Form;
